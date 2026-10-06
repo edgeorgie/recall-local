@@ -16,7 +16,7 @@ A self-assessment against a reviewer's rubric. It states gaps plainly so a revie
 | Accessibility | Partial | The canvas map is not keyboard navigable; search results are a keyboard-reachable list that conveys the same information. Not audited with automated tooling. |
 | Performance | Partial | A 23 MB model is downloaded on first use and cached. Not measured with Lighthouse. |
 | Security | Partial | Nothing leaves the device after the model download. Baseline security headers are set (nosniff, frame denial, referrer and permissions policies). No Content Security Policy is configured. |
-| Deployment | Gap | Not deployed yet. A Vercel deploy button is in the README. |
+| Deployment | Pass | Live on Vercel at https://recall-local.vercel.app, with security headers served by the host. The main flow was exercised on the deployed site. |
 | Licensing | Pass | MIT. Third-party: Transformers.js (Apache-2.0). |
 
 ## Verify it yourself
