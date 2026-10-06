@@ -301,7 +301,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="min-h-[460px] lg:sticky lg:top-6 lg:h-[calc(100vh-8rem)]">
+          <section className="order-first h-[320px] lg:order-none lg:sticky lg:top-6 lg:h-[calc(100vh-8rem)]">
             <MemoryMap points={points} highlights={highlights} pulseKey={pulse} onPick={(id) => {
               const hit = hits.find((h) => h.chunk.id === id);
               if (hit) setFocus(id);

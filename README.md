@@ -7,7 +7,7 @@ Search your own notes by meaning, not keywords. Everything runs in your browser:
 - Drop in Markdown or text files (or jot a quick note). Each note is split into passages.
 - Passages are embedded locally with [Transformers.js](https://github.com/huggingface/transformers.js) (`all-MiniLM-L6-v2`, quantized, about 23 MB, downloaded once and cached) in a Web Worker.
 - Ask in your own words: "what should I wear if it might rain" finds the passage about packing a rain jacket, even without shared words.
-- A **memory map** places every passage as a star by meaning (2D PCA of the embeddings). Matches glow and ripple; hover any star to read it.
+- A **memory map** places every passage as a star by meaning (2D PCA of the embeddings), with each note labeled at its center. Matches glow and ripple; hover any star to read it. Scroll or use the buttons to zoom, drag to pan, double click to reset. On phones the map sits above the results.
 - Notes and vectors are stored in IndexedDB on your device. Remove a note or clear everything at any time.
 
 ## Privacy
