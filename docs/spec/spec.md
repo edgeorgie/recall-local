@@ -2,9 +2,9 @@
 
 Search your own notes by meaning with local embeddings. Nothing leaves the browser.
 
-## Provenance
+## Baseline
 
-This project was built with AI assistance. The behavior was implemented and verified first, in the pull requests listed in `tasks.md`. This specification was written afterwards from the verified behavior (reverse specification, 2026-10-06). From this point every change follows the workflow in `AGENTS.md`: specification first, then plan, tasks, implementation and verification.
+This specification describes the behavior verified for the 0.1.0 baseline (2026-10-06) and is the source of truth from here on. Every change starts in this document and follows the workflow in `AGENTS.md`.
 
 ## Users
 
