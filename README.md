@@ -1,0 +1,37 @@
+# recall
+
+Search your own notes by meaning, not keywords. Everything runs in your browser: your notes are never uploaded.
+
+## What it does
+
+- Drop in Markdown or text files (or jot a quick note). Each note is split into passages.
+- Passages are embedded locally with [Transformers.js](https://github.com/huggingface/transformers.js) (`all-MiniLM-L6-v2`, quantized, about 23 MB, downloaded once and cached) in a Web Worker.
+- Ask in your own words: "what should I wear if it might rain" finds the passage about packing a rain jacket, even without shared words.
+- A **memory map** places every passage as a star by meaning (2D PCA of the embeddings). Matches glow and ripple; hover any star to read it.
+- Notes and vectors are stored in IndexedDB on your device. Remove a note or clear everything at any time.
+
+## Privacy
+
+After the one-time model download, nothing leaves the browser: no server, no account, no analytics.
+
+## Limits
+
+Retrieval quality depends on a small embedding model, so very short or very long passages work less well. Files must be `.md` or `.txt`.
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open http://localhost:3000.
+
+## Scripts
+
+- `npm test` runs the chunking, PCA and retrieval tests
+- `npm run build` creates a production build
+
+## License
+
+MIT
