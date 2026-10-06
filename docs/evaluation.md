@@ -15,7 +15,7 @@ A self-assessment against a reviewer's rubric. It states gaps plainly so a revie
 | Privacy and data flow | Pass | Every data path and its storage is tabulated in the README. |
 | Accessibility | Partial | The canvas map is not keyboard navigable; search results are a keyboard-reachable list that conveys the same information. Not audited with automated tooling. |
 | Performance | Partial | A 23 MB model is downloaded on first use and cached. Not measured with Lighthouse. |
-| Security | Partial | Nothing leaves the device after the model download. No Content Security Policy is configured. |
+| Security | Partial | Nothing leaves the device after the model download. Baseline security headers are set (nosniff, frame denial, referrer and permissions policies). No Content Security Policy is configured. |
 | Deployment | Gap | Not deployed yet. A Vercel deploy button is in the README. |
 | Licensing | Pass | MIT. Third-party: Transformers.js (Apache-2.0). |
 
