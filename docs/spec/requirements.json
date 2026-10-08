@@ -1,0 +1,77 @@
+[
+  {
+    "id": "FR-1",
+    "title": "Chunking notes",
+    "status": "Verified",
+    "acceptance": [
+      "Given text, then short paragraphs merge, long ones split on sentences, and trivial text is dropped."
+    ],
+    "implementation": [
+      "lib/notes.ts"
+    ],
+    "tests": [
+      "tests/recall.test.ts"
+    ],
+    "evidence": "PR 1: chunking tests; chunk size tuned after a real query returned a mixed passage."
+  },
+  {
+    "id": "FR-2",
+    "title": "Local embeddings and search",
+    "status": "Verified",
+    "acceptance": [
+      "Given notes and a query in different words, then the matching passage ranks first with at most three per note."
+    ],
+    "implementation": [
+      "lib/embed.worker.ts",
+      "lib/embedder.ts",
+      "lib/vector.ts"
+    ],
+    "tests": [
+      "tests/recall.test.ts"
+    ],
+    "evidence": "PR 1: retrieval test; four paraphrased queries returned the right passage first in Chrome."
+  },
+  {
+    "id": "FR-3",
+    "title": "On-device storage",
+    "status": "Verified",
+    "acceptance": [
+      "Given added notes, then they persist in IndexedDB and can be removed individually or cleared."
+    ],
+    "implementation": [
+      "lib/store.ts"
+    ],
+    "tests": [],
+    "evidence": "manual: PR 1, persistence checked across reloads in Chrome."
+  },
+  {
+    "id": "FR-4",
+    "title": "Memory map",
+    "status": "Verified",
+    "acceptance": [
+      "Given passages, then a 2D projection places them deterministically and matches glow.",
+      "Given the map, then the user can zoom, pan, reset and see each note labeled at its center."
+    ],
+    "implementation": [
+      "lib/pca.ts",
+      "components/MemoryMap.tsx"
+    ],
+    "tests": [
+      "tests/recall.test.ts"
+    ],
+    "evidence": "PR 1: PCA tests. PR 2: zoom, pan and labels checked in Chrome."
+  },
+  {
+    "id": "FR-5",
+    "title": "Mobile layout",
+    "status": "Verified",
+    "acceptance": [
+      "Given a 390 px viewport, then the map appears first and nothing overflows horizontally."
+    ],
+    "implementation": [
+      "app/page.tsx"
+    ],
+    "tests": [],
+    "evidence": "manual: PR 2, measured in Chrome at 390 px."
+  }
+]
