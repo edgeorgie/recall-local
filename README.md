@@ -2,6 +2,8 @@
 
 Search your own notes by meaning with local embeddings. Nothing leaves the browser.
 
+![recall home screen: a headline, two actions and an empty memory map](docs/assets/home.png)
+
 - Search your notes by meaning with local embeddings
 - A memory map of your notes with zoom, pan and note labels
 - Notes stored on the device in IndexedDB
