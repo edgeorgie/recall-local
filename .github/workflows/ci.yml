@@ -1,0 +1,38 @@
+name: CI
+
+# Before this, the repo carried only `release.yml`, which checked that the
+# version input matched `package.json` and then tagged `main`. Nothing ever ran
+# `npm run verify`, so the committed typecheck/lint/spec/test/build suite — and
+# in particular the security tests under `tests/` — could not fail a pull
+# request, and a release could be cut from a tree that does not even compile.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # --ignore-scripts: native postinstall downloads (e.g. transformers.js
+      # model binaries) are not needed for typecheck/lint/test/build, and
+      # skipping them keeps CI from depending on a third-party CDN.
+      - run: npm ci --ignore-scripts
+      # Next generates the `LayoutProps`/`PageProps` types that `app/` files
+      # reference, so typegen must run before `tsc --noEmit` or the typecheck
+      # fails on a missing name rather than a real type error.
+      - run: npx next typegen
+        if: ${{ hashFiles('next.config.*') != '' }}
+      - run: npm run verify
