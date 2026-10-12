@@ -14,7 +14,34 @@ permissions:
   contents: write
 
 jobs:
+  # Gate the release on the same checks CI runs. Without this, `release` only
+  # verified that the version input matched `package.json` — a tag and a GitHub
+  # release could be published from a tree that does not typecheck, lint, or
+  # pass its tests, which is worse than having no release automation at all.
+  # Mirrors this repo's own ci.yml verify job so the two cannot drift apart.
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # Same rationale as ci.yml: native postinstall model-binary downloads are
+      # not needed for verify, and skipping them drops a third-party CDN from
+      # every release run.
+      - run: npm ci --ignore-scripts
+      # Next generates the LayoutProps/PageProps types that app/ references, so
+      # typegen must precede `tsc --noEmit` or the typecheck fails on a missing
+      # name rather than a real type error.
+      - run: npx next typegen
+        if: ${{ hashFiles('next.config.*') != '' }}
+      - run: npm run verify
+
   release:
+    needs: verify
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
